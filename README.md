@@ -1,2 +1,4 @@
-# arduino_quarzersatz
+# Arduino Quarzersatz
+
+Ein Si5351 und ein Arduino Nano ersetzen einen Quarz
  
