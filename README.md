@@ -2,7 +2,7 @@
 # Arduino Quarzersatz
 
 Ein Si5351 und ein Arduino Nano ersetzen einen Quarz.
-Die Freuquenz ist programmierbar:
+Die Frequenz ist programmierbar:
 1. Terminal 
 2. Windowsprogramm "si5351 Eingabe"( Installiere mit 'setup.exe') . 
 
