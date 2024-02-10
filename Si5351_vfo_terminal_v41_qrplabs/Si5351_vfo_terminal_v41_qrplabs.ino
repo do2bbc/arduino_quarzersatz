@@ -162,10 +162,12 @@ void setNewData(eeprom_datensatz *ee)
   QRG = ee->frequenz;
   rxFrequenz = (QRG - 21400000) / 2;
   txFrequenz = QRG / 4;
-  mySerial.print  ( rxFrequenz );
-  mySerial.println(F( " Hertz"));
-  mySerial.print  ( txFrequenz );
-  mySerial.println(F( " Hertz"));
+  // Für debug zwecke
+  //mySerial.print  ( rxFrequenz );
+  //mySerial.println(F( " Hertz"));
+  //mySerial.print  ( txFrequenz );
+  //mySerial.println(F( " Hertz"));
+  //
   si5351.setDrive( 0, ee->drive);
   si5351.setfreq ( 0, rxFrequenz);
   si5351.setDrive( 1, ee->drive);
