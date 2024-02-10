@@ -30,7 +30,7 @@ si5351_lite          si5351;          //setfreq,setDrive
    fuer rx und tx und ist kürzer als hardware-"Serial"
 */
 
-#define FREQUENZ 63.950
+#define FREQUENZ 144.800
 #define STARTFREQUENZ FREQUENZ*1e6
 #define STARTDrive 0 /* 2mA */
 unsigned long serial_input_number;
@@ -155,8 +155,21 @@ static void display()
 
 ////////////////////////////////////////////////////////////////
 void setNewData(eeprom_datensatz *ee)
-{ si5351.setDrive( 0, ee->drive);
-  si5351.setfreq ( 0, ee->frequenz);
+{ 
+  unsigned long QRG;
+  unsigned long rxFrequenz;
+  unsigned long txFrequenz;
+  QRG = ee->frequenz;
+  rxFrequenz = (QRG - 21400000) / 2;
+  txFrequenz = QRG / 4;
+  mySerial.print  ( rxFrequenz );
+  mySerial.println(F( " Hertz"));
+  mySerial.print  ( txFrequenz );
+  mySerial.println(F( " Hertz"));
+  si5351.setDrive( 0, ee->drive);
+  si5351.setfreq ( 0, rxFrequenz);
+  si5351.setDrive( 1, ee->drive);
+  si5351.setfreq ( 1, txFrequenz);
 }
 
 void update()
@@ -170,4 +183,3 @@ void error()
   mySerial.print(F("wrong number, try again "));
   displayHilfe();
 }
-

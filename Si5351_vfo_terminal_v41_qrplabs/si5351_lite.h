@@ -11,8 +11,8 @@ class si5351_lite
 #define XTALPF 3               // 1:6pf  2:8pf  3:10pf
 
     // If using 27mhz crystal, set XTAL=27000000, MSA=33.  Then vco=891mhz
-#define XTAL 27005000          // Crystal freq in Hz
-#define MSA  33                // VCOA is at 25mhz*35 = 875mhz
+#define XTAL 25002737          // Crystal freq in Hz
+#define MSA  35                // VCOA is at 25mhz*35 = 875mhz
 
   public:
 
