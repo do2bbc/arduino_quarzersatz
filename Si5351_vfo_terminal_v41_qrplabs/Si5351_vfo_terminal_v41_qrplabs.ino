@@ -1,6 +1,12 @@
+#include <I2C_LCD.h>
+
+I2C_LCD lcd(39);
+
+
 #include "pinDefinitions.h"
 
 //libraries
+
 #include <SoftwareSerial.h>
 #include "si5351_lite.h"
 #include "SoftI2CMaster.h"
@@ -48,6 +54,9 @@ eeprom_datensatz eeData;
 ////////////////////////////////////////////////////////////////
 void setup()
 { mySerial.begin(9600); 
+  
+  lcd.begin(16, 2);
+  lcd.clear();
   si5351.init();
   EEPROM.get(EEPROM_STARTADRESSE, eeData);
   if ( eeData.identifier == MAGIC_CODE )  { //frequenz aus eeprom ok -> einstellen
@@ -60,6 +69,7 @@ void setup()
   }
   setNewData(&eeData);
   displayHilfe();
+  
 }
 
 ////////////////////////////////////////////////////////////////
@@ -172,6 +182,10 @@ void setNewData(eeprom_datensatz *ee)
   si5351.setfreq ( 0, rxFrequenz);
   si5351.setDrive( 1, ee->drive);
   si5351.setfreq ( 1, txFrequenz);
+  lcd.clear();
+  lcd.print(" ");
+  lcd.print(QRG);
+  lcd.print(" Herz");
 }
 
 void update()
